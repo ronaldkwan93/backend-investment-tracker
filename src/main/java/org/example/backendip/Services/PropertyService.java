@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class PropertyService {
 
-    private PropertyRepository propertyRepository;
+    private final PropertyRepository propertyRepository;
 
     public PropertyService(PropertyRepository propertyRepository) {
         this.propertyRepository = propertyRepository;
@@ -19,8 +19,11 @@ public class PropertyService {
 
     public Property createProperty(CreatePropertyDTO property) {
         Property p = new Property();
-        p.setName(property.getPropertyName());
-        p.setValue(property.getPropertyValue());
+        p.setAddress(property.getAddress());
+        p.setSuburb(property.getSuburb());
+        p.setState(property.getState());
+        p.setPurchasePrice(property.getPurchasePrice());
+        p.setWeeklyRent(property.getWeeklyRent());
         propertyRepository.save(p);
         return p;
     }

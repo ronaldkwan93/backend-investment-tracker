@@ -1,5 +1,6 @@
 package org.example.backendip.Controllers;
 
+import jakarta.validation.Valid;
 import org.example.backendip.DTOs.CreatePropertyDTO;
 import org.example.backendip.Models.Property;
 import org.example.backendip.Services.PropertyService;
@@ -13,7 +14,7 @@ import java.util.List;
 @RequestMapping("/api/property")
 public class PropertyController {
 
-    private PropertyService propertyService;
+    private final PropertyService propertyService;
 
     public PropertyController(PropertyService propertyService) {
         this.propertyService = propertyService;
@@ -26,7 +27,7 @@ public class PropertyController {
     }
 
     @PostMapping()
-    public ResponseEntity<Property> createProperty(@RequestBody CreatePropertyDTO property) {
+    public ResponseEntity<Property> createProperty( @RequestBody @Valid CreatePropertyDTO property) {
         Property createdProperty = propertyService.createProperty(property);
         return new ResponseEntity<>(createdProperty, HttpStatus.OK);
     }
