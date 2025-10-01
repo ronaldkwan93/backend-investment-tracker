@@ -1,34 +1,22 @@
-package org.example.backendip.Models;
+package org.example.backendip.DTOs;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
-@Entity
-@Table(name = "property")
-public class Property {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-
+public class UpdatePropertyDTO {
+    @NotBlank(message = "Address is required")
     private String address;
+    @NotBlank(message = "Suburb is required")
     private String suburb;
+    @NotBlank(message = "State is required")
     private String state;
+    @NotNull(message = "Purchase price is required")
     private BigDecimal purchasePrice;
+    @NotNull(message = "Weekly Rent is required")
     private BigDecimal weeklyRent;
-
-    @CreationTimestamp
-    private Date createdAt;
-    @UpdateTimestamp
-    private Date updatedAt;
 
     public String getAddress() {
         return address;
@@ -69,15 +57,4 @@ public class Property {
     public void setWeeklyRent(BigDecimal weeklyRent) {
         this.weeklyRent = weeklyRent;
     }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-
 }
