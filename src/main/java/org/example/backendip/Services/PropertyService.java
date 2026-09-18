@@ -43,7 +43,7 @@ public class PropertyService {
     }
 
     public List<Property> findRecentlyAdded() {
-        return propertyRepository.findTop5ByOrderByCreatedAtDesc();
+        return propertyRepository.findTop5ByOrderByUpdatedAtDesc();
     }
 
     public Property updateProperty(Long id, UpdatePropertyDTO dto) {
