@@ -26,13 +26,10 @@ assistant that can query and manage property data on the user's behalf.
    CREATE DATABASE investment_tracker;
    ```
 
-2. Create a `.env` file in the project root:
+2. Copy `.env.example` to `.env` and fill in your values:
 
-   ```env
-   DATABASE_NAME=investment_tracker
-   SQL_USER=your_mysql_user
-   SQL_PASSWORD=your_mysql_password
-   OPENAI_API_KEY=your_openai_api_key
+   ```bash
+   cp .env.example .env
    ```
 
 3. Run the app:
