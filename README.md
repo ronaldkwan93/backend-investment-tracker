@@ -1,4 +1,22 @@
-# Running locally
+# Investment Property Tracker — Backend
+
+A REST API for tracking real estate investment properties, with an AI chat
+assistant that can query and manage property data on the user's behalf.
+
+## Tech Stack
+
+| Technology | Why it's used |
+|---|---|
+| **Java 21 + Spring Boot 3** | Industry-standard for production-grade REST APIs; strong typing, mature ecosystem, easy to test and deploy. |
+| **Spring Web (MVC)** | Exposes the property CRUD API as REST endpoints. |
+| **Spring Data JPA + Hibernate** | Maps `Property` records to the database without hand-written SQL, while `PropertyRepository` still supports custom queries (e.g. address search). |
+| **MySQL** | Relational database for persisting property data — a natural fit for structured, related financial records. |
+| **Spring AI** | Abstraction layer for wiring an LLM (OpenAI) into the app — handles prompts, tool-calling, and message history without hand-rolling API calls. |
+| **Model Context Protocol (MCP) server** | Exposes the property tools (list, search, create, update, estimate yield) as a standard interface any MCP-compatible client (VS Code Copilot, Claude Desktop, etc.) can call — not just the built-in chatbot. |
+| **OpenAI (via Spring AI)** | Powers the `/api/chat` endpoint: a natural-language assistant scoped to investment-property questions that can call the tools above to answer with real data. |
+| **Maven** | Dependency management and build tool. |
+
+## Running locally
 
 **Requirements:** Java 21, Maven, MySQL running locally.
 
