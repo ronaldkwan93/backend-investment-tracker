@@ -23,3 +23,14 @@
    ```
 
 The API will start on `http://localhost:8080`.
+
+## Stopping the app
+
+If it's running in your terminal, press `Ctrl+C`.
+
+If it's stuck running in the background on port 8080, free the port:
+
+```powershell
+netstat -ano | findstr :8080
+taskkill /PID <pid> /F
+```
