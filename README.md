@@ -14,6 +14,7 @@
    DATABASE_NAME=investment_tracker
    SQL_USER=your_mysql_user
    SQL_PASSWORD=your_mysql_password
+   OPENAI_API_KEY=your_openai_api_key
    ```
 
 3. Run the app:
@@ -23,6 +24,24 @@
    ```
 
 The API will start on `http://localhost:8080`.
+
+## Chat endpoint
+
+`POST /api/chat` — send a message and get a reply from OpenAI, with access to the
+property tools (list/find/create/update properties, estimate yield).
+
+```json
+{
+  "message": "What's the gross yield on my property at 12 Smith St?",
+  "history": [
+    { "role": "user", "content": "hi" },
+    { "role": "assistant", "content": "Hi! Ask me about your investment properties." }
+  ]
+}
+```
+
+`history` is optional — the frontend is responsible for keeping and resending prior
+turns to maintain conversation context.
 
 ## Stopping the app
 
