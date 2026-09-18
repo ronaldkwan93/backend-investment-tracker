@@ -76,6 +76,27 @@ public class PropertyAiTools {
         }
     }
 
+    @Tool(description = "Calculate portfolio totals: number of properties, total portfolio value (sum of purchase prices), " +
+            "total weekly rental income, and total annual rental income. Always call this tool for any question about " +
+            "totals, sums, or aggregates across multiple properties instead of adding the numbers up yourself.")
+    public Map<String, Object> getPortfolioSummary() {
+        List<Property> properties = propertyService.findAll();
+        BigDecimal totalValue = BigDecimal.ZERO;
+        BigDecimal totalWeeklyIncome = BigDecimal.ZERO;
+        for (Property property : properties) {
+            totalValue = totalValue.add(property.getPurchasePrice());
+            totalWeeklyIncome = totalWeeklyIncome.add(property.getWeeklyRent());
+        }
+        BigDecimal totalAnnualIncome = totalWeeklyIncome.multiply(BigDecimal.valueOf(52));
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("propertyCount", properties.size());
+        result.put("totalPortfolioValue", totalValue);
+        result.put("totalWeeklyIncome", totalWeeklyIncome);
+        result.put("totalAnnualIncome", totalAnnualIncome);
+        return result;
+    }
+
     @Tool(description = "Estimate gross rental yield for a property, as a percentage of purchase price.")
     public Map<String, Object> estimatePropertyMetrics(@ToolParam(description = "Id of the property") Long propertyId) {
         Map<String, Object> result = new HashMap<>();
