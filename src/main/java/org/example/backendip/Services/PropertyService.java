@@ -42,6 +42,10 @@ public class PropertyService {
         return propertyRepository.findByAddressContainingIgnoreCase(address);
     }
 
+    public List<Property> findRecentlyAdded() {
+        return propertyRepository.findTop5ByOrderByCreatedAtDesc();
+    }
+
     public Property updateProperty(Long id, UpdatePropertyDTO dto) {
         Property p = findById(id);
         if (dto.getAddress() != null) p.setAddress(dto.getAddress());

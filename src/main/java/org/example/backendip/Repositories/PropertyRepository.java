@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PropertyRepository extends JpaRepository<Property, Long> {
     List<Property> findByAddressContainingIgnoreCase(String address);
+    List<Property> findTop5ByOrderByCreatedAtDesc();
 }

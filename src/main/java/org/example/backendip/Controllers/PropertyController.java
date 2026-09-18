@@ -33,6 +33,11 @@ public class PropertyController {
         return new ResponseEntity<>(createdProperty, HttpStatus.OK);
     }
 
+    @GetMapping("/recent-added")
+    public ResponseEntity<List<Property>> getRecentlyAdded() {
+        return new ResponseEntity<>(propertyService.findRecentlyAdded(), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Property> getPropertyById(@PathVariable Long id) {
         return new ResponseEntity<>(propertyService.findById(id), HttpStatus.OK);
