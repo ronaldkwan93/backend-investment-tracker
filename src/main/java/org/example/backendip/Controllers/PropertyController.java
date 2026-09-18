@@ -2,6 +2,7 @@ package org.example.backendip.Controllers;
 
 import jakarta.validation.Valid;
 import org.example.backendip.DTOs.CreatePropertyDTO;
+import org.example.backendip.DTOs.UpdatePropertyDTO;
 import org.example.backendip.Models.Property;
 import org.example.backendip.Services.PropertyService;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,16 @@ public class PropertyController {
     public ResponseEntity<Property> createProperty( @RequestBody @Valid CreatePropertyDTO property) {
         Property createdProperty = propertyService.createProperty(property);
         return new ResponseEntity<>(createdProperty, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Property> getPropertyById(@PathVariable Long id) {
+        return new ResponseEntity<>(propertyService.findById(id), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Property> updateProperty(@PathVariable Long id, @RequestBody UpdatePropertyDTO property) {
+        return new ResponseEntity<>(propertyService.updateProperty(id, property), HttpStatus.OK);
     }
 
 }

@@ -1,33 +1,13 @@
-package org.example.backendip.Models;
-
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+package org.example.backendip.DTOs;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
-@Entity
-@Table(name = "property")
-public class Property {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class UpdatePropertyDTO {
     private String address;
     private String suburb;
     private String state;
     private BigDecimal purchasePrice;
     private BigDecimal weeklyRent;
-
-    @CreationTimestamp
-    private Date createdAt;
-    @UpdateTimestamp
-    private Date updatedAt;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getAddress() {
         return address;
@@ -68,15 +48,4 @@ public class Property {
     public void setWeeklyRent(BigDecimal weeklyRent) {
         this.weeklyRent = weeklyRent;
     }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-
 }
